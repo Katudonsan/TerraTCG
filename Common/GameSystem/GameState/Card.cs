@@ -60,11 +60,11 @@ namespace TerraTCG.Common.GameSystem.GameState
 	// Bot helper function, apply additional
 	// logic for whether the bot should use
 	// this item on an ally
-	public delegate bool ShouldTarget(Zone zone);
+	internal delegate bool ShouldTarget(Zone zone);
 
 	// Delegate function type to check whether a given card can
 	// be promoted onto a given zone
-	public delegate bool CanPromote(Zone zone, Card card);
+	internal delegate bool CanPromote(Zone zone, Card card);
 
 	public class Card
 	{
@@ -101,7 +101,7 @@ namespace TerraTCG.Common.GameSystem.GameState
 		internal int Points { get; set; } = 1;
 
 		// Used for cards that can only be created by other cards (eg. Nymph)
-		internal bool IsCollectable { get; set; } = true;
+		public bool IsCollectable { get; set; } = true;
 
 		internal SelectInHandAction SelectInHandAction { get; set; }
 			= (zone, player) => new DeployCreatureAction(zone, player);
@@ -165,7 +165,7 @@ namespace TerraTCG.Common.GameSystem.GameState
 		internal string TypeLine => string.Join(" ",
 			SubTypes.Select(t => Language.GetTextValue($"Mods.{Mod}.Cards.Types.{t}")));
 
-		public DrawZoneNPC DrawZoneNPC { get; set; } = CardOverlayRenderer.Instance.DefaultDrawZoneNPC;
+		internal DrawZoneNPC DrawZoneNPC { get; set; } = CardOverlayRenderer.Instance.DefaultDrawZoneNPC;
 
 		// Do a search of whether any text on the card contains the search term
 		internal bool MatchesTextFilter(string textFilter)

@@ -4,9 +4,9 @@ using TerraTCG.Common.GameSystem.GameState.Modifiers;
 
 namespace TerraTCG.Common.GameSystem.GameState
 {
-	public delegate void DoAttack(Attack attack, Zone sourceZone, Zone targetZone);
+	internal delegate void DoAttack(Attack attack, Zone sourceZone, Zone targetZone);
 
-	public delegate List<ICardModifier> ApplyModifiers(Zone appliedZone);
+	internal delegate List<ICardModifier> ApplyModifiers(Zone appliedZone);
 	public struct Attack()
 	{
 		public string Name { get; set; }
