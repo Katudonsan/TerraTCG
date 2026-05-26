@@ -1,5 +1,4 @@
-displayName = TerraTCG: PvP Update!
-author = billybobmcbo
-version = 1.2.0
+displayName = TerraTCG: Unofficial Fork!
+author = billybobmcbo,katudonsan
+version = 1.3.0
 sortAfter = DialogueTweak
-homepage = https://forums.terraria.org/index.php?threads/terratcg-the-terraria-collectible-card-game.140791/

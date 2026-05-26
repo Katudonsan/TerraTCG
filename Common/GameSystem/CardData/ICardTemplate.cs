@@ -1,49 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using TerraTCG.Common.GameSystem.GameState;
 using TerraTCG.Content.Gores;
 
 namespace TerraTCG.Common.GameSystem.CardData
 {
-    internal interface ICardTemplate
-    {
-        public Card Card { get; }
-        public Card CreateCard();
-    }
+	public interface ICardTemplate
+	{
+		Card Card { get; }
+		Card CreateCard();
+	}
 
 
-    internal abstract class BaseCardTemplate : ModSystem, ICardTemplate
-    {
-        private Card _card;
-        public Card Card { 
-            get
-            {
-                bool newCard = _card == null;
-                _card ??= CreateCard();
-                if (newCard)
-                {
+	public abstract class BaseCardTemplate : ModSystem, ICardTemplate
+	{
+		private Card _card;
+		public Card Card
+		{
+			get
+			{
+				bool newCard = _card == null;
+				_card ??= CreateCard();
+				if (newCard)
+				{
 					if (!Main.dedServ)
 					{
 						var goreInstance = new CardGore(_card.Name, _card.TexturePath);
 						Mod.AddContent(goreInstance);
 						_card.GoreType = goreInstance.Type;
 					}
-                }
-                return _card;
-            } 
-        }
+				}
+				return _card;
+			}
+		}
 
-        public abstract Card CreateCard();
+		public abstract Card CreateCard();
 
-        public override void OnModLoad()
-        {
+		public override void OnModLoad()
+		{
 			// Guarantee that it loads on time
-            _ = Card;
-        }
-    }
+			_ = Card;
+		}
+	}
 }
